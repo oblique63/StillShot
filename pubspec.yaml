@@ -1,6 +1,6 @@
 name: stillshot
 description: A simple, bare-bones static site generator with markdown and mustache templating support.
-version: 1.0.0
+version: 0.1.0
 homepage: https://github.com/oblique63/StillShot
 author: Enrique Gavidia <enrique@enriquegavidia.com>
 
