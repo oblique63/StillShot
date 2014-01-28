@@ -1,0 +1,11 @@
+site_name: Sample StillShot Blog
+author: Example Person
+date_format: yMMMMd
+default_template: blog_post
+
+categories:
+  - tech
+  - music
+  - rants
+
+greeting: "___Hello there!___"

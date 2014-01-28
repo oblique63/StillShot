@@ -1,0 +1,22 @@
+h1 {
+    font-family: sans-serif;
+    color: #39e;
+    text-decoration: underline;
+}
+
+nav li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 2.5em;
+    margin-bottom: 3em;
+    font-weight: bold;
+    float: left;
+}
+
+article {
+    clear: both;
+    font-size: 120%;
+    margin-top: 2em;
+    margin-left: 3em;
+    max-width: 50vw;
+}

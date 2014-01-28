@@ -1,0 +1,5 @@
+name: stillshot_example
+
+dependencies:
+  stillshot:
+    path: ../

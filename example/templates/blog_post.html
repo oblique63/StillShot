@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}} | {{_site.site_name}}</title>
+    <link rel="stylesheet" href="../web/css/main.css">
+</head>
+<body>
+
+    <h1>{{title}}</h1>
+    by <span class="author">{{_site.author}}</span> - <span class="date">{{_date}}</span>
+
+    <nav>
+        <span>Categories:</span>
+        <ul>
+            {{#_site.categories}}
+            <li>{{.}}</li>
+            {{/_site.categories}}
+        </ul>
+    </nav>
+
+    <article>
+        {{_content}}
+    </article>
+
+</body>
+</html>

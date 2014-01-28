@@ -1,0 +1,6 @@
+import "package:stillshot/stillshot.dart" as stillshot;
+
+void
+main() {
+    // TODO: implement commandline site generation, including abaility to pass directory locatoins as args
+}
