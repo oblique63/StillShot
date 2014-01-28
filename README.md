@@ -13,6 +13,7 @@ Edit your CSS/SASS/Dart/Javascript/Coffeescript/whatever like would on any other
 (your assets won't get moved or copied around), and simplify your content creation with Markdown and HTML templates.
 Recommend using it with the [LivePage][livepage] chrome extension for maximum productivity.
 
+
 ## site.yaml
 **Optional** [YAML][yaml] file that stores your global values and config options.
 Values set here can be accessed from all templates and markdown files.
@@ -26,6 +27,7 @@ Defaults to looking for a `content` folder in the same directory as the Dart fil
 - `date_formatting`: Date format string used for parsing the 'last modified' date of your markdown files. See the Dart
 [DateFormat Docs](https://api.dartlang.org/docs/channels/stable/latest/intl/DateFormat.html) for possible options.
 - `markdown_templating`: Whether or not to support template tag embedding/rendering in markdown files. Defaults to `true`.
+
 
 ## Markdown
 **StillShot** lets you use [markdown][markdown] to write your site content. At the beginning of each markdown file, you
@@ -45,13 +47,11 @@ have the option to use a [YAML][yaml] block to define custom values that you can
 As you can see, a line of tildes (`~`) is used to designate your YAML block. You can access/inject your values into
 your pages using [mustache template syntax][mustache]. You can do this either inside your dedicated HTML/mustache templates:
 
-```html
-<ul>
-  {{#tags}}
-    <li>{{.}}</li>
-  {{/tags}}
-</ul>
-```
+    <ul>
+      {{#tags}}
+        <li>{{.}}</li>
+      {{/tags}}
+    </ul>
 
 Or, you can embed your values within the markdown file itself:
 
@@ -61,16 +61,47 @@ Or, you can embed your values within the markdown file itself:
 
 so you can take advantage of templating and markdown at the same time.
 
+Simply place all your `.md` files in your `content_dir` and **StillShot** will generate your site accordingly. Note that
+the filenames of your markdown files will be used for the names of the corresponding generated HTML files in your `output_dir`.
+
+
 ## Templates
-As mentioned above, you can access any variables set within your markdown files from your templates using mustache.
+As mentioned above, you can access any variables set within your markdown files from your templates using mustache. Options
+set from your `site.yaml` can be accessed through the `_site` variable, like so:
 
+    <h1>{{ _site.site_name }}</h1>
 
-Any `src` and `href` attributes that have relative references to your output directory will also be trimmed to be local
-to the output directory (e.g. if you have a `<link rel="stylesheet" href="../web/css/main.css">` tag and `web` is your output
-directory, it will be modified to `<link rel="stylesheet" href="css/main.css">` in the corresponding output file. A tag with `
-href="../assets/css/main.css"` however, will remain unchanged. This way you can test out your css/js/dart directly from
-your templates without needing to change your resource paths.
-_(Note: this feature currently only works with forward-slash (`/`) path separators)._
+where `site_name` is a property defined in your `site.yaml`. You can access these values from your markdown files as well.
+
+Every page and template has access to the following values:
+
+- `title`: post title, usually set inside each markdown file, but is set to name of markdown file if left blank
+- `_site`: site.yaml values
+- `_date`: the post/markdown file's _last modified_ date
+- `_content`: converted markdown content (only accessible from templates)
+
+So when an HTML template for your markdown content would look something like this:
+
+    <head>
+      ...
+      <title>{{ title }}</title>
+      ...
+    </head>
+    <body>
+      ...
+      <article>
+        {{ _content }}
+      </article>
+      ...
+    </body>
+
+Additionally, any tags with `src` and `href` attributes that have relative references to your output directory will be trimmed
+to be local to your output directory. So for example, if you have a `<link rel="stylesheet" href="../web/css/main.css">` tag and
+`web` is your output directory, then it will be modified to `<link rel="stylesheet" href="css/main.css">` in the corresponding
+output file. A tag like `href="../assets/css/main.css"` however, will remain unchanged because it doesn't contain a reference to
+the output directory. This way you can test out your css/js/dart directly from your templates without needing to change your
+resource paths. _(Note: this feature currently only works with forward-slash (`/`) path separators)._
+
 
 ## Generating Your Site
 First make sure to import StillShot in whichever **Dart** file you have your `main()` function:
@@ -128,6 +159,7 @@ Using the default options, a **StillShot** project would typically look like thi
 
 Check the [example](https://github.com/oblique63/StillShot/tree/master/example) folder for a sample project using StillShot.
 Be sure to read through the files in `content` and `templates` for extra usage details.
+
 
 # Install
 add `stillshot` to your `pubspec.yaml` file to install it from pub:
