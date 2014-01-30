@@ -44,7 +44,15 @@ generate() {
     print("Generating site...\n");
 
     File options_file = new File('site.yaml');
-    Map yaml_options = yaml.loadYaml(options_file.readAsStringSync());
+    Map yaml_options = {};
+    try {
+        yaml_options = yaml.loadYaml(options_file.readAsStringSync());
+    }
+    catch (e) {
+        /// No site.yaml file specified
+    }
+
+    // TODO: provide a way to modify site.yaml values from dart, without just overwriting them
 
     yaml_options.forEach((key, value) =>
         SITE_OPTIONS.putIfAbsent(key, () => value));
@@ -70,6 +78,8 @@ generate() {
     List<File> templates = template_dir.listSync().where((file) => file is File);
 
     for (File file in markdown_files) {
+        // TODO: provide a way to access the list of pages with filenames and titles from a _site var
+
         String filename = path.basenameWithoutExtension(file.path);
         String filepath = path.normalize(file.path);
 
@@ -87,6 +97,7 @@ generate() {
         }
 
         page_options.putIfAbsent('title', () => filename);
+
         page_options['_site'] = SITE_OPTIONS;
 
         if (page_options.containsKey('date_format')) {
@@ -99,8 +110,11 @@ generate() {
 
         String content = lines.join('\n');
 
-        if (SITE_OPTIONS['markdown_templating']) {
-            content = renderTemplate(content, page_options);
+        if (SITE_OPTIONS['markdown_templating']
+        || (page_options.containsKey('markdown_templating')
+        && page_options['markdown_templating'])) {
+
+                content = renderTemplate(content, page_options);
         }
 
         page_options['_content'] = md.markdownToHtml(content);
