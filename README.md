@@ -9,7 +9,7 @@ This is a stripped-down 'framework' to help make Markdown -> HTML generation (wi
 as quick and easy as possible, while still being flexible and powerful enough to feel like you're working with
 a dynamic site.
 
-Edit your CSS/SASS/Dart/Javascript/Coffeescript/whatever like would on any other plain static site
+Edit your CSS/SASS/Dart/JS/Coffeescript/etc like you would on any other plain static site
 (your assets won't get moved or copied around), and simplify your content creation with Markdown and HTML templates.
 Recommend using it with the [LivePage][livepage] chrome extension for maximum productivity.
 
