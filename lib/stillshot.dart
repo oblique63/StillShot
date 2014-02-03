@@ -11,7 +11,8 @@ import "package:intl/intl.dart";
 * Takes a template string (such as a Mustache template) and renders it out to an HTML string
 * using the given input values/options.
 */
-typedef String TemplateRenderer(String template, Map options);
+typedef String
+TemplateRenderer(String template, Map options);
 
 /**
 * Can be set to define a custom [rendering function](TemplateRenderer) to handle your template files
@@ -120,27 +121,21 @@ generate() {
         page_options['_content'] = md.markdownToHtml(content);
 
         File template;
-        if (page_options.containsKey('template')) {
-            try {
+        try {
+            if (page_options.containsKey('template')) {
                 template = templates.firstWhere(
                     (temp) => path.basenameWithoutExtension(temp.path) == page_options['template']);
             }
-            catch(e) { throw "No template given for '$filepath!"; }
-        }
-        else if (SITE_OPTIONS.containsKey('default_template')) {
-            try {
+            else if (SITE_OPTIONS.containsKey('default_template')) {
                 template = templates.firstWhere(
                     (temp) => path.basenameWithoutExtension(temp.path) == SITE_OPTIONS['default_template']);
             }
-            catch(e) { throw "No template given for '$filepath!"; }
-        }
-        else {
-            try {
+            else {
                 template = templates.firstWhere(
                     (temp) => path.basenameWithoutExtension(temp.path) == filename);
             }
-            catch(e) { throw "No template given for '$filepath!"; }
         }
+        catch(e) { throw "No template given for '$filepath!"; }
 
         print("Using\t'${path.normalize(template.path)}'");
 
