@@ -44,8 +44,7 @@ date_format: yMd
 # old HTML is the default. If no template is defined here, StillShot
 # will use the one listed for 'default_template' in your site.yaml
 template: info_page
-~~~~~~~~~~~~~~~~~~~~
-
+~~~
 3 `~`'s is the minimum for designating and separating a [YAML][yaml] block, but they can be extended longer -- all that matters
 is that the tildes (`~`) are on their own line.
 

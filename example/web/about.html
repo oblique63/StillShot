@@ -24,7 +24,7 @@
     '_date' stores the markdown page's last modified date. The date formatting can be set in 'site.yaml' via the
     'date_format' variable.
     -->
-    - <span>1/27/2014</span>
+    - <span>7/22/2014</span>
 
     <!-- '_content' contains the contents of the markdown file (minus the yaml variables in the header) -->
     <article>
@@ -33,11 +33,11 @@ is that the tildes (<code>~</code>) are on their own line.</p>
 <p>And anything beyond that gets interpreted as <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>!</p>
 <p>You can even use template tags in here, for any variables you set in in the top YAML block, or in your <code>site.yaml</code> file:</p>
 <p>This post's title is: "About StillShot"</p>
-<p>This file was last modified on 1/27/2014</p>
+<p>This file was last modified on 7/22/2014</p>
 <p><code>site.yaml</code> greeting: <strong><em>Hello there!</em></strong></p>
 <p>Note that variables beginning with an underscore designate <em>implicit</em> metadata added by <strong>StillShot</strong>.</p>
 <p>Some vars that are always available by default:</p><ul><li><code>title</code>: post title, automatically set to name of markdown file if left blank</li><li><code>_site</code>: site.yaml values</li><li><code>_date</code>: post 'last modified' date</li><li><code>_content</code>: post content (only accessible from templates, not markdown)</li></ul>
-<p>And as you can see, you can also use mustache logic to iterate through yaml maps and lists:</p><ul><li><a href="https://dartlang.org">Dart</a></li><li><a href="https://pub.dartlang.org">Pub</a></li><li><a href="http://google.com">Google</a></li><li><a href="http://github.com">Github</a></li><li><a href="https://github.com/oblique63/StillShot">StillShot</a></li><li><a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a></li><li><a href="http://mustache.github.io/mustache.5.html">Mustache</a></li><li><a href="http://rhnh.net/2011/01/31/yaml-tutorial">YAML</a></li><li>foo</li><li>bar</li></ul>
+<p>And as you can see, you can also use mustache logic to iterate through yaml maps and lists:</p><ul><li><a href="https://dartlang.org">Dart</a></li><li><a href="https://pub.dartlang.org">Pub</a></li><li><a href="http://google.com">Google</a></li><li><a href="http://github.com">Github</a></li><li><a href="https://github.com/oblique63/StillShot">StillShot</a></li><li><a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a></li><li><a href="http://mustache.github.io/mustache.5.html">Mustache</a></li><li><a href="http://rhnh.net/2011/01/31/yaml-tutorial">YAML</a></li><li>foo</li><li>bar</li><li>baz</li></ul>
 <p>Note how you need to use a <code>.</code> to access a list item, but can access map/dict keys directly.</p>
 <p>You can of course disable these markdown templating features by setting <code>markdown_templating: true</code> in your <a href="../site.yaml">site.yaml</a> file.
 Same ideas apply when writing your actual HTML templates. See <a href="http://mustache.github.io/mustache.5.html">mustache's docs</a> for more templating info.</p>
