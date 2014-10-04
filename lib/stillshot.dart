@@ -45,12 +45,12 @@ void
 generate() {
     _logStarting();
 
-    _paresOptionsFile('site.yaml');
+    _paresOptionsFile(path.absolute('site.yaml'));
     _fillInDefaultSiteOptions();
 
-    var content_dir = new Directory(SITE_OPTIONS['content_dir']);
-    var template_dir = new Directory(SITE_OPTIONS['template_dir']);
-    var output_dir = new Directory(SITE_OPTIONS['output_dir']);
+    var content_dir = new Directory(path.absolute(SITE_OPTIONS['content_dir']));
+    var template_dir = new Directory(path.absolute(SITE_OPTIONS['template_dir']));
+    var output_dir = new Directory(path.absolute(SITE_OPTIONS['output_dir']));
 
     // TODO: support directory hierarchies for markdown, templates and output
     var markdown_files = _listContentFilesIn(content_dir);
@@ -112,9 +112,9 @@ _fillInDefaultSiteOptions() {
 
 void
 _paresOptionsFile(String config_file_path) {
-    var options_file = new File(config_file_path);
     var config_options = {};
     try {
+        var options_file = new File(config_file_path);
         config_options = yaml.loadYaml(options_file.readAsStringSync());
     }
     catch (e) {
@@ -130,12 +130,12 @@ List<File>
 _listContentFilesIn(Directory content_dir) {
     return content_dir.listSync()
            .where((file) => file is File
-                         && (file.path.endsWith('.md') || file.path.endsWith(".markdown")));
+                         && (file.path.endsWith('.md') || file.path.endsWith(".markdown"))).toList();
 }
 
 List<File>
 _listTemplatesIn(Directory template_dir) {
-    return template_dir.listSync().where((file) => file is File);
+    return template_dir.listSync().where((file) => file is File).toList();
 }
 
 bool
@@ -155,7 +155,7 @@ _hasYamlBlock(List<String> content) {
 List<String>
 _extractYamlBlockFrom(List<String> content) {
     var yaml_delimiter = SITE_OPTIONS["yaml_block_delimiter"];
-    return content.takeWhile((line) => !line.startsWith(yaml_delimiter));
+    return content.takeWhile((line) => !line.startsWith(yaml_delimiter)).toList();
 }
 
 Map
