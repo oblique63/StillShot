@@ -30,6 +30,7 @@ renderTemplate = (String template, Map options) =>
 * Values may be accessed in templates using the `_site` var. E.g. `{{ _site.date_format }}`
 *
 * Here are some options that are set by default:
+* * `workspace_dir: '.'`  The site/project root directory. May only be overwritten from a build file.
 * * `content_dir: 'content'`
 * * `template_dir: 'templates'`
 * * `output_dir: 'web'`
@@ -38,19 +39,21 @@ renderTemplate = (String template, Map options) =>
 * * `yaml_block_delimiter: '~~~'` Delimiter string that separates a YAML-block from the rest of the content in a markdown file
 */
 Map
-SITE_OPTIONS = {};
+SITE_OPTIONS = {
+    'workspace_dir': '.'
+};
 
 /// Render and output your static site (WARNING: overwrites existing HTML files in output directory).
 void
 generate() {
     _logStarting();
 
-    _paresOptionsFile(path.absolute('site.yaml'));
+    _paresOptionsFile(path.absolute(SITE_OPTIONS['workspace_dir'], 'site.yaml'));
     _fillInDefaultSiteOptions();
 
-    var content_dir = new Directory(path.absolute(SITE_OPTIONS['content_dir']));
-    var template_dir = new Directory(path.absolute(SITE_OPTIONS['template_dir']));
-    var output_dir = new Directory(path.absolute(SITE_OPTIONS['output_dir']));
+    var content_dir = new Directory(path.absolute(SITE_OPTIONS['workspace_dir'], SITE_OPTIONS['content_dir']));
+    var template_dir = new Directory(path.absolute(SITE_OPTIONS['workspace_dir'], SITE_OPTIONS['template_dir']));
+    var output_dir = new Directory(path.absolute(SITE_OPTIONS['workspace_dir'], SITE_OPTIONS['output_dir']));
 
     // TODO: support directory hierarchies for markdown, templates and output
     var markdown_files = _listContentFilesIn(content_dir);
