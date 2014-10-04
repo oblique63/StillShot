@@ -8,7 +8,7 @@ _logStarting() {
 
 void
 _logEnvironment(String working_directory) {
-    print("From ${path.absolute(working_directory)}");
+    print("From ${path.absolute(working_directory)}\n");
 }
 
 void

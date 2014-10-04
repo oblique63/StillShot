@@ -1,6 +1,8 @@
 StillShot
 ==========
 
+[![Build Status](https://drone.io/github.com/oblique63/StillShot/status.png)](https://drone.io/github.com/oblique63/StillShot/latest)
+
 A simple, bare-bones static site generator in [Dart][dart], with [Markdown][markdown]
 and [Mustache][mustache] templating support.
 
