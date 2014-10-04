@@ -7,6 +7,11 @@ _logStarting() {
 }
 
 void
+_logEnvironment(String working_directory) {
+    print("From ${path.absolute(working_directory)}");
+}
+
+void
 _logReading(File file) {
     var file_path = _displayPath(file.path);
     print("Reading\t'$file_path'");

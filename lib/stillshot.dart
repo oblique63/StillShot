@@ -51,6 +51,10 @@ generate() {
     _paresOptionsFile(path.absolute(SITE_OPTIONS['workspace_dir'], 'site.yaml'));
     _fillInDefaultSiteOptions();
 
+    if (SITE_OPTIONS['workspace_dir'] != '.') {
+        _logEnvironment(SITE_OPTIONS['workspace_dir']);
+    }
+
     var content_dir = new Directory(path.absolute(SITE_OPTIONS['workspace_dir'], SITE_OPTIONS['content_dir']));
     var template_dir = new Directory(path.absolute(SITE_OPTIONS['workspace_dir'], SITE_OPTIONS['template_dir']));
     var output_dir = new Directory(path.absolute(SITE_OPTIONS['workspace_dir'], SITE_OPTIONS['output_dir']));
