@@ -8,7 +8,7 @@ _logStarting() {
 
 void
 _logEnvironment(String working_directory) {
-    print("From ${path.absolute(working_directory)}\n");
+    print("In Project Directory: ${path.absolute(working_directory)}\n");
 }
 
 void
@@ -35,4 +35,4 @@ _logDone() {
 }
 
 String
-_displayPath(String path_str) => path.relative(path_str);
+_displayPath(String path_str) => path.relative(path_str, from: SITE_OPTIONS['workspace_dir']);
